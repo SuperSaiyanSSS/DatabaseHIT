@@ -41,9 +41,9 @@ class AddWindow(QMainWindow, Ui_MainWindow):
         :return: None
         """
         sql_client = globalvar.get_client()
-        for i in sql_client.get_whcd_list():
-            print i
         self.comboBox_whcd.addItems(sql_client.get_whcd_list())
+        self.comboBox_zcbm.addItems(sql_client.get_zcbm_list())
+        self.comboBox_bmbm.addItems(sql_client.get_bmbm_list())
 
 
     @pyqtSignature("")

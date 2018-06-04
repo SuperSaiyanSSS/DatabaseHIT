@@ -37,7 +37,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         from add import AddWindow
         self.add_window = AddWindow()
         self.add_window.show()
-        raise NotImplementedError
+#        raise NotImplementedError
     
     @pyqtSignature("")
     def on_pushButton_view_clicked(self):
