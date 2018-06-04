@@ -51,7 +51,54 @@ class AddWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        print 777
+        zgbm = unicode(self.lineEdit_zgbm.text())
+        xm = unicode(self.lineEdit_xm.text())
+        xb = unicode(self.comboBox_xb.currentText())
+        mz = unicode(self.lineEdit_mz.text())
+        csny = unicode(self.lineEdit_csny.text())
+        hyzk = unicode(self.comboBox_hyzk.currentText())
+        whcd = unicode(self.comboBox_whcd.currentText())
+        jkzk = unicode(self.lineEdit_jkzk.text())
+        zzmm = unicode(self.comboBox_zzmm.currentText())
+        zcbm = unicode(self.comboBox_zcbm.currentText())
+        jg = unicode(self.lineEdit_jg.text())
+        sfzh = unicode(self.lineEdit_sfzh.text())
+        byxx = unicode(self.lineEdit_byxx.text())
+        zytc = unicode(self.lineEdit_zytc.text())
+        hkszd = unicode(self.lineEdit_hkszd.text())
+        hkxz = unicode(self.comboBox_hkxz.currentText())
+        xzz = unicode(self.lineEdit_xzz.text())
+        zw = unicode(self.lineEdit_zw.text())
+        gzm = unicode(self.lineEdit_gzm.text())
+        jspx = unicode(self.lineEdit_jspx.text())
+        jlcf = unicode(self.lineEdit_jlcf.text())
+        smwt = unicode(self.lineEdit_smwt.text())
+        tbrqm = unicode(self.lineEdit_tbrqm.text())
+        tbrq = unicode(self.lineEdit_tbrq.text())
+        gsyj = unicode(self.lineEdit_gsyj.text())
+        scrq = unicode(self.lineEdit_scrq.text())
+        ryxz = unicode(self.lineEdit_ryxz.text())
+        rcsj = unicode(self.lineEdit_rcsj.text())
+        ryzt = unicode(self.lineEdit_ryzt.text())
+        bz = unicode(self.lineEdit_bz.text())
+        bmbm = unicode(self.comboBox_bmbm.currentText())
+
+        xm1 = unicode(self.lineEdit_xm1.text())
+        xm2 = unicode(self.lineEdit_xm2.text())
+        brgx1 = unicode(self.lineEdit_brgx1.text())
+        brgx2 = unicode(self.lineEdit_brgx2.text())
+        hzgz1 = unicode(self.lineEdit_hzgz1.text())
+        hzgz2 = unicode(self.lineEdit_hzgz2.text())
+
+        sql_client = globalvar.get_client()
+        zc_dict = sql_client.get_dict_of_table("bm_zc")
+        zc_key = zc_dict[zcbm]
+        bm_dict = sql_client.get_dict_of_table("bm_bm")
+        bm_key = bm_dict[bmbm]
+        whcd_dict = sql_client.get_dict_of_table("bm_wh")
+        whcd_key = whcd_dict[whcd]
+
+        sql_client.add_person_document(zgbm, xm, xb,mz, csny, hyzk, whcd_key, jkzk,zzmm,zc_key,jg,sfzh,byxx,zytc,hkszd,hkxz,xzz,zw,gzm,jspx,jlcf,smwt,tbrqm,tbrq,gsyj,scrq,ryxz,rcsj,ryzt,bz,bm_key)
 
         print unicode(self.comboBox_xb.currentText())
        # print unicode(self.comboBox_xb.itemText(1))

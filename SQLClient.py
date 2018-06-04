@@ -70,7 +70,64 @@ class SQLClient(object):
             bmbm_list.append(unicode(line[1]))
         return bmbm_list
 
+    def add_person_document(self, zgbm, xm, xb, mz, csny, hyzk, whcd, jkzk, zzmm, zc, jg, sfzh, byxx, zytc, hkszd, hkxz, xzz, zw, gzm,
+                   jspx, jlcf, smwt, tbrqm, tbrq, gsyj, scrq, ryxz, rcsj, ryzt, bz, szbm):
+        sqlstr = "INSERT INTO m_dadj(zgbm,xm, xb,mz,csny,hyzk,whcd, jkzk,zzmm,zcbm,jg,sfzh,byxx,zytc,hkszd,hkxz,xzz,zw,gzm,jspx,jlcf,smwt,tbrqm,tbrq,gsyj,scrq,ryxz,rcsj,ryzt,bz,bmbm) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');" % (
+        zgbm, xm, xb, mz, csny, hyzk, whcd, jkzk, zzmm, zc, jg, sfzh, byxx, zytc, hkszd, hkxz, xzz, zw, gzm, jspx, jlcf,
+        smwt, tbrqm, tbrq, gsyj, scrq, ryxz, rcsj, ryzt, bz, szbm)
 
+        print sqlstr
+        try:
+            self.cursor.execute(sqlstr)
+            self.db.commit()
+            print '插入成功！'
+            return True
+        except Exception, e:
+            print e
+            return False
+
+    def get_dict_of_table(self, table_name):
+        """
+        获取dict形式的编码表
+        :param table_name: 表名
+        :return: {名称1：对应编码1, 名称2：对应编码2, ...}
+        """
+        self.cursor.execute("SELECT * FROM %s" %table_name)
+        data = self.cursor.fetchall()
+        table_dict = {}
+        for line in data:
+            table_dict[line[1]] = line[0]
+        return table_dict
+
+    def init_tableview(self):
+        self.cursor.execute("SELECT * FROM m_dadj")
+        data = self.cursor.fetchall()
+        print type(data)
+        # table_list = []
+        # for i in data:
+        #     table_list.append(i)
+        #     print type(i[0])
+        return data
+
+    def get_info_by_id_accurately(self, id):
+        self.cursor.execute("SELECT * FROM m_dadj WHERE zgbm = %s" % id)
+        data = self.cursor.fetchall()
+        return data
+
+    def get_info_by_id_vaguely(self, id):
+        self.cursor.execute("SELECT * FROM m_dadj WHERE zgbm LIKE '%%%s%%'" % id)
+        data = self.cursor.fetchall()
+        return data
+
+    def get_info_by_name_accurately(self, name):
+        self.cursor.execute("SELECT * FROM m_dadj WHERE xm ='%s'" % name)
+        data = self.cursor.fetchall()
+        return data
+
+    def get_info_by_name_vaguely(self, name):
+        self.cursor.execute("SELECT * FROM m_dadj WHERE xm LIKE '%%%s%%'" % name)
+        data = self.cursor.fetchall()
+        return data
 
 
 

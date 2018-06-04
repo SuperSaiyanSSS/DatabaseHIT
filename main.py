@@ -33,19 +33,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         from add import AddWindow
         self.add_window = AddWindow()
         self.add_window.show()
-#        raise NotImplementedError
-    
+
     @pyqtSignature("")
     def on_pushButton_view_clicked(self):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-        raise NotImplementedError
+        from browse import BrowseWindow
+        self.browse_window = BrowseWindow()
+        self.browse_window.show()
     
     @pyqtSignature("")
     def on_pushButton_analyse_clicked(self):
