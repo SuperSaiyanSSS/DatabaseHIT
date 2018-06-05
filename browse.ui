@@ -75,11 +75,6 @@
     </column>
     <column>
      <property name="text">
-      <string>新建列</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
       <string>籍贯</string>
      </property>
     </column>
@@ -115,6 +110,11 @@
     </column>
     <column>
      <property name="text">
+      <string>职务</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>工种名</string>
      </property>
     </column>
@@ -125,7 +125,7 @@
     </column>
     <column>
      <property name="text">
-      <string>新建列</string>
+      <string>何时奖励和处分</string>
      </property>
     </column>
     <column>
@@ -135,17 +135,12 @@
     </column>
     <column>
      <property name="text">
-      <string>新建列</string>
+      <string>填表人签名</string>
      </property>
     </column>
     <column>
      <property name="text">
       <string>填表日期</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>新建列</string>
      </property>
     </column>
     <column>
@@ -165,12 +160,17 @@
     </column>
     <column>
      <property name="text">
+      <string>入常时间</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>人员状态</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>新建列</string>
+      <string>备注</string>
      </property>
     </column>
     <column>

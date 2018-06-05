@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project DatabaseHIT -->
-<!-- Saved: 2018-06-04, 09:35:56 -->
+<!-- Saved: 2018-06-05, 11:18:44 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="1" uid="{e4851fb5-69d3-424d-aff7-062a44e01d17}">
+  <Task priority="1" completed="False" type="1" uid="{46c15148-ba01-487a-bd4d-63b6a30156d1}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2018-06-04, 09:35:53</Created>
+    <Created>2018-06-05, 11:18:41</Created>
     <Resource>
       <Filename>main.py</Filename>
-      <Linenumber>45</Linenumber>
+      <Linenumber>55</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{9c1193d4-d644-4a31-a110-027f1d8cdd8d}">
+  <Task priority="1" completed="False" type="1" uid="{25dcbef4-47b9-46c7-a5fc-f6322de6c22e}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2018-06-04, 09:35:53</Created>
+    <Created>2018-06-05, 11:18:41</Created>
     <Resource>
       <Filename>main.py</Filename>
-      <Linenumber>53</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1" uid="{08754f66-5649-4e37-bf53-1858e5ed519f}">
-    <Summary>TODO: not implemented yet</Summary>
-    <Description></Description>
-    <Created>2018-06-04, 09:35:53</Created>
-    <Resource>
-      <Filename>main.py</Filename>
-      <Linenumber>61</Linenumber>
+      <Linenumber>63</Linenumber>
     </Resource>
   </Task>
 </Tasks>

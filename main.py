@@ -12,6 +12,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
 from Ui_main import Ui_MainWindow
+import globalvar
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):

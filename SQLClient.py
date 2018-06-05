@@ -99,6 +99,19 @@ class SQLClient(object):
             table_dict[line[1]] = line[0]
         return table_dict
 
+    def get_reverse_dict_of_table(self, table_name):
+        """
+        获取dict形式的编码表
+        :param table_name: 表名
+        :return: {对应编码1: 名称1, 对应编码2：名称2, ...}
+        """
+        self.cursor.execute("SELECT * FROM %s" % table_name)
+        data = self.cursor.fetchall()
+        table_dict = {}
+        for line in data:
+            table_dict[line[0]] = line[1]
+        return table_dict
+
     def init_tableview(self):
         self.cursor.execute("SELECT * FROM m_dadj")
         data = self.cursor.fetchall()
@@ -129,6 +142,52 @@ class SQLClient(object):
         data = self.cursor.fetchall()
         return data
 
+    # 个人档案查询
+    def get_profile(self, user_id):
+        sqlstr = "SELECT * FROM m_dadj WHERE zgbm = %s" % user_id
+        print "???" + sqlstr
+        person_count = self.cursor.execute(sqlstr)
+        if person_count != 0:
+            person_res = self.cursor.fetchone()
+        else:
+            person_res = ()
+        sqlstr = "SELECT brgx,xm,job FROM cygx WHERE zgbm = %s" % user_id
+        cygx_count = self.cursor.execute(sqlstr)
+        if cygx_count != 0:
+            cygx_res = self.cursor.fetchall()
+        else:
+            cygx_res = ()
+        # print person_res, cygx_res
+        return person_res, cygx_res
+
+    # 更新个人信息
+    def update_profile(self, zgbm, column_name, update_content):
+        update_content = unicode(update_content)
+
+        if column_name == 'zcbm' or column_name == 'bmbm'or column_name == 'whcd':
+            info_dict = self.get_dict_of_table('bm_'+column_name[:2])
+            update_content = info_dict[update_content]
+
+        try:
+            sqlstr = "UPDATE m_dadj SET %s = '%s' WHERE zgbm = %s" % (column_name, update_content, zgbm)
+            # print sqlstr
+            self.cursor.execute(sqlstr)
+            self.db.commit()
+            print '修改成功！ '
+            return True
+        except Exception, e:
+            print e
+            return False
+
+    # 删除个人信息
+    def delete_profile(self, user_id):
+        try:
+            self.cursor.execute("DELETE FROM m_dadj WHERE zgbm = %s" % user_id)
+            self.db.commit()
+            return True
+        except Exception as e:
+            print e
+            return False
 
 
 if __name__ == '__main__':

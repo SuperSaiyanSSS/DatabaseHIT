@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project DatabaseHIT -->
-<!-- Saved: 2018-06-01, 11:30:44 -->
+<!-- Saved: 2018-06-04, 11:30:00 -->
 <!-- Copyright (C) 2018 wxw,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -14,15 +14,18 @@
   <Eol index="0"/>
   <Sources>
     <Source>Ui_add.py</Source>
+    <Source>Ui_browse.py</Source>
     <Source>Ui_login.py</Source>
     <Source>Ui_main.py</Source>
     <Source>__init__.py</Source>
     <Source>add.py</Source>
+    <Source>browse.py</Source>
     <Source>login.py</Source>
     <Source>main.py</Source>
   </Sources>
   <Forms>
     <Form>add.ui</Form>
+    <Form>browse.ui</Form>
     <Form>login.ui</Form>
     <Form>main.ui</Form>
   </Forms>
