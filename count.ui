@@ -1,19 +1,253 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>CountWindow</class>
+ <widget class="QMainWindow" name="CountWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>788</width>
+    <height>777</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>CountWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="pushButton_by_zc">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>580</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>统计职称</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_by_wh">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>580</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>统计文化</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_by_bm">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>580</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>统计部门</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_input">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>580</y>
+      <width>121</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>80</y>
+      <width>331</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>当前公司总人数：</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>771</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string>职工编码</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>姓名</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>性别</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>民族</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>出生年月</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>婚姻状况</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>文化程度</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>健康状况</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>政治面貌</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>职称</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>籍贯</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>身份证号码</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>毕业学校</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>专业或特长</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>户口所在地</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>户口性质</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>现住址</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>职务</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>工种名</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>何时技术培训</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>何时奖励和处分</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>需要说明问题</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>填表人签名</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>填表日期</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>公司审查意见</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>审查日期</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>人员性质</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>入常时间</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>人员状态</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>备注</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>部门</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>

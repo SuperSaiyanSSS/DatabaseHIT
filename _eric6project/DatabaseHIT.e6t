@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project DatabaseHIT -->
-<!-- Saved: 2018-06-05, 11:18:44 -->
+<!-- Saved: 2018-06-06, 08:23:48 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="1" uid="{46c15148-ba01-487a-bd4d-63b6a30156d1}">
+  <Task priority="1" completed="False" type="1" uid="{4cb2d131-1f57-4114-9287-0dd6ca074621}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2018-06-05, 11:18:41</Created>
+    <Created>2018-06-06, 08:23:45</Created>
     <Resource>
       <Filename>main.py</Filename>
       <Linenumber>55</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{25dcbef4-47b9-46c7-a5fc-f6322de6c22e}">
+  <Task priority="1" completed="False" type="1" uid="{4f46abf6-44d7-4d5c-9c96-849c67904e9c}">
     <Summary>TODO: not implemented yet</Summary>
     <Description></Description>
-    <Created>2018-06-05, 11:18:41</Created>
+    <Created>2018-06-06, 08:23:45</Created>
     <Resource>
       <Filename>main.py</Filename>
       <Linenumber>63</Linenumber>

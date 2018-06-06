@@ -12,6 +12,7 @@ from PyQt4.QtCore import *
 from Ui_browse import Ui_BrowseWindow
 import globalvar
 
+
 class BrowseWindow(QMainWindow, Ui_BrowseWindow):
     """
     Class documentation goes here.

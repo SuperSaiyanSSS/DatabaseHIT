@@ -27,7 +27,7 @@ class SQLClient(object):
         self.cursor.execute("SELECT * FROM admin_table")
         data = self.cursor.fetchall()
 
-        return True
+        #return True
         for line in data:
             if line[0] == self.user and line[1] == self.password:
                 return True
@@ -160,6 +160,27 @@ class SQLClient(object):
         # print person_res, cygx_res
         return person_res, cygx_res
 
+    def get_target_info_by_zc(self, zc):
+        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE zcbm ='%s'" % zc)
+        if test_count == 0:
+            return ()
+        data = self.cursor.fetchall()
+        return data
+
+    def get_target_info_by_wh(self, wh):
+        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE whcd ='%s'" % wh)
+        if test_count == 0:
+            return ()
+        data = self.cursor.fetchall()
+        return data
+
+    def get_target_info_by_bm(self, bm):
+        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE bmbm ='%s'" % bm)
+        if test_count == 0:
+            return ()
+        data = self.cursor.fetchall()
+        return data
+
     # 更新个人信息
     def update_profile(self, zgbm, column_name, update_content):
         update_content = unicode(update_content)
@@ -186,6 +207,93 @@ class SQLClient(object):
             self.db.commit()
             return True
         except Exception as e:
+            print e
+            return False
+
+    # 获取公司总人数
+    def count_sum_people(self):
+        self.cursor.execute("SELECT COUNT(*) FROM m_dadj")
+        count = self.cursor.fetchall()
+        print count[0][0]
+        return count[0][0]
+
+    # 获取职称表信息
+    def get_zc_info(self):
+        self.cursor.execute("SELECT * FROM bm_zc")
+        data = self.cursor.fetchall()
+        return data
+
+    # 获取文化表信息
+    def get_wh_info(self):
+        self.cursor.execute("SELECT * FROM bm_wh")
+        data = self.cursor.fetchall()
+        return data
+
+    # 获取部门表信息
+    def get_bm_info(self):
+        self.cursor.execute("SELECT * FROM bm_bm")
+        data = self.cursor.fetchall()
+        return data
+
+    # 增加职程表信息
+    def add_zc_info(self, code, name):
+        self.cursor.execute("INSERT INTO bm_zc(zcbm, zcmc) VALUES('%s', '%s')" % (code, name))
+        self.db.commit()
+
+    # 增加文化表信息
+    def add_wh_info(self, code, name):
+        self.cursor.execute("INSERT INTO bm_wh(whbm, whcd) VALUES('%s', '%s')" % (code, name))
+        self.db.commit()
+
+    # 增加部门表信息
+    def add_bm_info(self, code, name):
+        self.cursor.execute("INSERT INTO bm_bm(bmbm, bmm) VALUES('%s', '%s')" % (code, name))
+        self.db.commit()
+
+    # 删除职称表信息
+    def delete_zc_info(self, xxbm):
+        self.cursor.execute("DELETE FROM bm_zc WHERE zcbm = '%s'" % xxbm)
+        self.db.commit()
+
+    # 删除文化表信息
+    def delete_wh_info(self, xxbm):
+        self.cursor.execute("DELETE FROM bm_wh WHERE whbm = '%s'" % xxbm)
+        self.db.commit()
+
+    # 删除部门表信息
+    def delete_bm_info(self, xxbm):
+        self.cursor.execute("DELETE FROM bm_bm WHERE bmbm = '%s'" % xxbm)
+        self.db.commit()
+
+    # 修改管理员密码
+    def update_admin_password(self, password):
+        self.cursor.execute("UPDATE admin_table SET password = '%s' WHERE user = 'admin'" % password)
+        self.db.commit()
+
+    # 数据库备份
+    def beifen(self, filename):
+        import os
+        try:
+            command = "mysqldump -uroot -p123456 HR_Manage > H:/" + filename + ".sql"
+            os.system(command)
+            print "备份成功 nice马飞"
+            return True
+        except Exception, e:
+            print e
+            return False
+
+    # 数据库恢复
+    def huifu(self, filename):
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!必须先关闭！否则卡死
+        self.db.close()
+        import os
+        try:
+            command = "mysql -uroot -p123456 HR_Manage < H:/" + filename + ".sql"
+            os.system(command)
+            self.db = MySQLdb.connect("localhost", "root", "123456", "hr_manage", charset="utf8")
+            self.cursor = self.db.cursor()
+            return True
+        except Exception, e:
             print e
             return False
 

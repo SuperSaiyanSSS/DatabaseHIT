@@ -52,16 +52,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-        raise NotImplementedError
+        from count import CountWindow
+        self.count_window = CountWindow()
+        self.count_window.show()
     
     @pyqtSignature("")
     def on_pushButton_manage_clicked(self):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-        raise NotImplementedError
+        from manage import ManageWindow
+        self.manage_window = ManageWindow()
+        self.manage_window.show()
 
 
 if __name__ == "__main__":
