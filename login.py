@@ -43,6 +43,7 @@ class DialogLogin(QDialog, Ui_DialogLogin):
         username = unicode(self.lineEdit_user.text())
         password = unicode(self.lineEdit_password.text())
 
+        # 创建SQL客户端。保证全局可用。
         global sql_client
         sql_client = globalvar._init(username, password)
         if sql_client.check_user():
@@ -52,7 +53,6 @@ class DialogLogin(QDialog, Ui_DialogLogin):
             self.main_window.show()
         else:
             print "用户名或密码错误！"
-        # raise NotImplementedError
 
 
 if __name__ == "__main__":

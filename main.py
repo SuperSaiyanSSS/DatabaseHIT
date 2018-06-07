@@ -4,10 +4,7 @@ from __future__ import unicode_literals
 Module implementing MainWindow.
 """
 
-from PyQt4.QtCore import pyqtSignature
-from PyQt4.QtGui import QMainWindow
 from PyQt4 import QtGui
-from PyQt4 import QtCore
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 

@@ -15,15 +15,15 @@ from Ui_add import Ui_MainWindow
 import globalvar
 
 
-
 class AddWindow(QMainWindow, Ui_MainWindow):
     """
     Class documentation goes here.
     """
+
     def __init__(self, parent=None):
         """
         Constructor
-        
+
         @param parent reference to the parent widget
         @type QWidget
         """
@@ -44,7 +44,6 @@ class AddWindow(QMainWindow, Ui_MainWindow):
         self.comboBox_whcd.addItems(sql_client.get_whcd_list())
         self.comboBox_zcbm.addItems(sql_client.get_zcbm_list())
         self.comboBox_bmbm.addItems(sql_client.get_bmbm_list())
-
 
     @pyqtSignature("")
     def on_pushButton_add_clicked(self):
@@ -98,10 +97,12 @@ class AddWindow(QMainWindow, Ui_MainWindow):
         whcd_dict = sql_client.get_dict_of_table("bm_wh")
         whcd_key = whcd_dict[whcd]
 
-        sql_client.add_person_document(zgbm, xm, xb,mz, csny, hyzk, whcd_key, jkzk,zzmm,zc_key,jg,sfzh,byxx,zytc,hkszd,hkxz,xzz,zw,gzm,jspx,jlcf,smwt,tbrqm,tbrq,gsyj,scrq,ryxz,rcsj,ryzt,bz,bm_key)
+        sql_client.add_person_document(zgbm, xm, xb, mz, csny, hyzk, whcd_key, jkzk, zzmm, zc_key, jg, sfzh, byxx, zytc, hkszd, hkxz, xzz, zw, gzm, jspx, jlcf, smwt, tbrqm, tbrq, gsyj, scrq, ryxz, rcsj, ryzt, bz, bm_key)
+        sql_client.add_person_relationship(zgbm, xm1, brgx1, hzgz1, xm2, brgx2, hzgz2)
 
         print unicode(self.comboBox_xb.currentText())
        # print unicode(self.comboBox_xb.itemText(1))
+
 
 if __name__ == "__main__":
     import sys

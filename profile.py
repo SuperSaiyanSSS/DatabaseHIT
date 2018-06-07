@@ -5,8 +5,6 @@ from __future__ import unicode_literals
 Module implementing ProfileWindow.
 """
 
-from PyQt4.QtCore import pyqtSignature
-from PyQt4.QtGui import QMainWindow
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -28,6 +26,8 @@ class ProfileWindow(QMainWindow, Ui_ProfileWindow):
         """
         QMainWindow.__init__(self, parent)
         self.setupUi(self)
+        self.pushButton_delete.setVisible(False)
+        self.pushButton_update.setVisible(False)
         # 目标用户Id
         self.sql_client = globalvar.get_client()
 
@@ -39,10 +39,11 @@ class ProfileWindow(QMainWindow, Ui_ProfileWindow):
         self.show_profile()
 
     def show_profile(self):
+
         person_res, cygx_res = self.sql_client.get_profile(self.user_id)
+
         if person_res == ():
-            response = QMessageBox.information(self, 'Message', "不存在此人！", QMessageBox.Yes)
-            # return
+            QMessageBox.information(self, 'Message', "不存在此人！", QMessageBox.Yes)
         else:
             whcd_list = self.sql_client.get_whcd_list()
             zcbm_list = self.sql_client.get_zcbm_list()
@@ -117,11 +118,27 @@ class ProfileWindow(QMainWindow, Ui_ProfileWindow):
                 self.lineEdit_xm2.setText(unicode(cygx_res[1][1]))
                 self.lineEdit_hzgz2.setText(unicode(cygx_res[1][2]))
 
+        data = self.sql_client.get_person_relationship(self.user_id)
+        count = 0
+        for line in data:
+            if count == 0:
+                self.lineEdit_brgx1.setText(unicode(line[2]))
+                self.lineEdit_xm1.setText(unicode(line[3]))
+                self.lineEdit_hzgz1.setText(unicode(line[4]))
+            if count == 1:
+                self.lineEdit_brgx2.setText(unicode(line[2]))
+                self.lineEdit_xm2.setText(unicode(line[3]))
+                self.lineEdit_hzgz2.setText(unicode(line[4]))
+            count += 1
+            if count == 2:
+                break
+
     @pyqtSignature("")
     def on_pushButton_update_clicked(self):
         """
         Slot documentation goes here.
         """
+
         zgbm = unicode(self.lineEdit_zgbm.text())
         xm = unicode(self.lineEdit_xm.text())
         xb = unicode(self.comboBox_xb.currentText())

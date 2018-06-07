@@ -4,8 +4,6 @@ from __future__ import unicode_literals
 Module implementing BrowseWindow.
 """
 
-from PyQt4.QtCore import pyqtSignature
-from PyQt4.QtGui import QMainWindow
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -67,6 +65,8 @@ class BrowseWindow(QMainWindow, Ui_BrowseWindow):
                     item = QTableWidgetItem(info_dict[item])
                 elif column == 9:
                     info_dict = self.sql_client.get_reverse_dict_of_table('bm_zc')
+                    print info_dict
+                    print item
                     item = QTableWidgetItem(info_dict[item])
                 elif column == 30:
                     info_dict = self.sql_client.get_reverse_dict_of_table('bm_bm')
