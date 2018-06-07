@@ -3,7 +3,9 @@ from __future__ import unicode_literals
 """
 Module implementing BrowseWindow.
 """
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -36,6 +38,10 @@ class BrowseWindow(QMainWindow, Ui_BrowseWindow):
             for column, item in enumerate(line):
                 item = unicode(item)
 
+                # 身份证
+                if column == 11:
+                    item = globalvar.decrypt(item)
+
                 if column == 6:
                     info_dict = self.sql_client.get_reverse_dict_of_table('bm_wh')
                     item = QTableWidgetItem(info_dict[item])
@@ -60,6 +66,11 @@ class BrowseWindow(QMainWindow, Ui_BrowseWindow):
         for row, line in enumerate(data):
             for column, item in enumerate(line):
                 item = unicode(item)
+
+                # 身份证
+                if column == 11:
+                    item = globalvar.decrypt(item)
+
                 if column == 6:
                     info_dict = self.sql_client.get_reverse_dict_of_table('bm_wh')
                     item = QTableWidgetItem(info_dict[item])
@@ -100,7 +111,7 @@ class BrowseWindow(QMainWindow, Ui_BrowseWindow):
         """
         Slot documentation goes here.
         """
-        user_name = self.textEdit_find.toPlainText()
+        user_name = unicode(self.textEdit_find.toPlainText())
         data = self.sql_client.get_info_by_name_accurately(user_name)
         self.fill_tableview(data)
 
@@ -110,7 +121,7 @@ class BrowseWindow(QMainWindow, Ui_BrowseWindow):
         """
         Slot documentation goes here.
         """
-        user_name = self.textEdit_find.toPlainText()
+        user_name = unicode(self.textEdit_find.toPlainText())
         data = self.sql_client.get_info_by_name_vaguely(user_name)
         self.fill_tableview(data)
 
@@ -141,10 +152,17 @@ class BrowseWindow(QMainWindow, Ui_BrowseWindow):
         column_name = unicode(self.tableWidget.horizontalHeaderItem(column).text())# 获取列名
         print column_name
         column_name = self.chinese_to_code(column_name)
+
         # 找到对于行的第一项（职工编码项）
         zgbm = unicode(self.tableWidget.takeItem(row, 0).text())
         self.tableWidget.setItem(row, 0, QTableWidgetItem(zgbm))
         update_content = self.textEdit_find.toPlainText()
+
+        import globalvar
+        # 身份证
+        if column_name == 'sfzh':
+            update_content = globalvar.encrypt(update_content)
+
         Qupdate_content = QTableWidgetItem(update_content)
         self.tableWidget.setItem(row, column, Qupdate_content)
 

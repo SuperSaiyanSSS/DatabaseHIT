@@ -35,6 +35,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.add_window = AddWindow()
         self.add_window.show()
 
+
     @pyqtSignature("")
     def on_pushButton_view_clicked(self):
         """

@@ -3,19 +3,12 @@ from __future__ import unicode_literals
 """
 Module implementing DialogLogin.
 """
-import sys
-
-from PyQt4.QtCore import pyqtSignature
-from PyQt4.QtGui import QDialog
 from PyQt4 import QtGui
-from PyQt4 import QtCore
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
 from Ui_login import Ui_DialogLogin
-from SQLClient import SQLClient
 import globalvar
-
 
 
 class DialogLogin(QDialog, Ui_DialogLogin):

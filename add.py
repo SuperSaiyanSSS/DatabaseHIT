@@ -97,6 +97,9 @@ class AddWindow(QMainWindow, Ui_MainWindow):
         whcd_dict = sql_client.get_dict_of_table("bm_wh")
         whcd_key = whcd_dict[whcd]
 
+        # 身份证号
+        sfzh = globalvar.encrypt(sfzh)
+
         sql_client.add_person_document(zgbm, xm, xb, mz, csny, hyzk, whcd_key, jkzk, zzmm, zc_key, jg, sfzh, byxx, zytc, hkszd, hkxz, xzz, zw, gzm, jspx, jlcf, smwt, tbrqm, tbrq, gsyj, scrq, ryxz, rcsj, ryzt, bz, bm_key)
         sql_client.add_person_relationship(zgbm, xm1, brgx1, hzgz1, xm2, brgx2, hzgz2)
 

@@ -70,7 +70,8 @@ class ProfileWindow(QMainWindow, Ui_ProfileWindow):
             self.comboBox_whcd.addItem(zcbm_dict[unicode(person_res[9])])
             self.comboBox_zcbm.addItems([zcbm for zcbm in zcbm_list if zcbm != unicode(person_res[9])])
             self.lineEdit_jg.setText(unicode(person_res[10]))
-            self.lineEdit_sfzh.setText(unicode(person_res[11]))
+            # 身份证号要解密
+            self.lineEdit_sfzh.setText(globalvar.decrypt(unicode(person_res[11])))
             self.lineEdit_byxx.setText(unicode(person_res[12]))
             self.lineEdit_zytc.setText(unicode(person_res[13]))
             self.lineEdit_hkszd.setText(unicode(person_res[14]))

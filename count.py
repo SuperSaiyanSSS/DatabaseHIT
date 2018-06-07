@@ -35,6 +35,10 @@ class CountWindow(QMainWindow, Ui_CountWindow):
             for column, item in enumerate(line):
                 item = unicode(item)
 
+                # 加密身份证号
+                if column == 11:
+                    item = globalvar.decrypt(item)
+
                 if column == 6:
                     info_dict = self.sql_client.get_reverse_dict_of_table('bm_wh')
                     item = QTableWidgetItem(info_dict[item])

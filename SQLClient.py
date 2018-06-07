@@ -130,20 +130,24 @@ class SQLClient(object):
         return data
 
     def get_info_by_id_vaguely(self, id):
-        args = (id, )
-        self.cursor.execute("SELECT * FROM m_dadj WHERE zgbm LIKE '%%%s%%'", args)
+        # TODO:有无问
+        args = (unicode(id), )
+        sql_string = "SELECT * FROM m_dadj WHERE zgbm LIKE '%%%%%s%%%%'" % id
+        self.cursor.execute(sql_string, ())
         data = self.cursor.fetchall()
         return data
 
     def get_info_by_name_accurately(self, name):
         args = (name, )
-        self.cursor.execute("SELECT * FROM m_dadj WHERE xm ='%s'", args)
+        self.cursor.execute("SELECT * FROM m_dadj WHERE xm =%s", args)
         data = self.cursor.fetchall()
         return data
 
     def get_info_by_name_vaguely(self, name):
-        args = (name, )
-        self.cursor.execute("SELECT * FROM m_dadj WHERE xm LIKE '%%%s%%'", args)
+        # 一次转义
+        sql_string = "SELECT * FROM m_dadj WHERE xm LIKE '%%%%%s%%%%'" % name
+        # 防止SQL注入，二次转义
+        self.cursor.execute(sql_string, ())
         data = self.cursor.fetchall()
         return data
 
@@ -165,7 +169,7 @@ class SQLClient(object):
 
     def get_target_info_by_zc(self, zc):
         args = (zc, )
-        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE zcbm ='%s'", args)
+        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE zcbm =%s", args)
         if test_count == 0:
             return ()
         data = self.cursor.fetchall()
@@ -173,7 +177,7 @@ class SQLClient(object):
 
     def get_target_info_by_wh(self, wh):
         args = (wh, )
-        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE whcd ='%s'", args)
+        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE whcd =%s", args)
         if test_count == 0:
             return ()
         data = self.cursor.fetchall()
@@ -181,7 +185,7 @@ class SQLClient(object):
 
     def get_target_info_by_bm(self, bm):
         args = (bm, )
-        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE bmbm ='%s'", args)
+        test_count = self.cursor.execute("SELECT * FROM m_dadj WHERE bmbm =%s", args)
         if test_count == 0:
             return ()
         data = self.cursor.fetchall()
@@ -197,7 +201,7 @@ class SQLClient(object):
 
         try:
             args = (column_name, update_content, zgbm)
-            self.cursor.execute("UPDATE m_dadj SET %s = '%s' WHERE zgbm = %s", args)
+            self.cursor.execute("UPDATE m_dadj SET %s = '%s' WHERE zgbm = '%s'" %(column_name, update_content, zgbm))
             self.db.commit()
             print '修改成功！ '
             return True
@@ -216,7 +220,6 @@ class SQLClient(object):
         except Exception as e:
             print e
             return False
-
 
     # 获取公司总人数
     def count_sum_people(self):
@@ -246,43 +249,43 @@ class SQLClient(object):
     # 增加职程表信息
     def add_zc_info(self, code, name):
         args = (code, name)
-        self.cursor.execute("INSERT INTO bm_zc(zcbm, zcmc) VALUES('%s', '%s')", args)
+        self.cursor.execute("INSERT INTO bm_zc(zcbm, zcmc) VALUES(%s, %s)", args)
         self.db.commit()
 
     # 增加文化表信息
     def add_wh_info(self, code, name):
         args = (code, name)
-        self.cursor.execute("INSERT INTO bm_wh(whbm, whcd) VALUES('%s', '%s')", args)
+        self.cursor.execute("INSERT INTO bm_wh(whbm, whcd) VALUES(%s, %s)", args)
         self.db.commit()
 
     # 增加部门表信息
     def add_bm_info(self, code, name):
         args = (code, name)
-        self.cursor.execute("INSERT INTO bm_bm(bmbm, bmm) VALUES('%s', '%s')", args)
+        self.cursor.execute("INSERT INTO bm_bm(bmbm, bmm) VALUES(%s, %s)", args)
         self.db.commit()
 
     # 删除职称表信息
     def delete_zc_info(self, xxbm):
         args = (xxbm, )
-        self.cursor.execute("DELETE FROM bm_zc WHERE zcbm = '%s'", args)
+        self.cursor.execute("DELETE FROM bm_zc WHERE zcbm = %s", args)
         self.db.commit()
 
     # 删除文化表信息
     def delete_wh_info(self, xxbm):
         args = (xxbm, )
-        self.cursor.execute("DELETE FROM bm_wh WHERE whbm = '%s'", args)
+        self.cursor.execute("DELETE FROM bm_wh WHERE whbm = %s", args)
         self.db.commit()
 
     # 删除部门表信息
     def delete_bm_info(self, xxbm):
         args = (xxbm, )
-        self.cursor.execute("DELETE FROM bm_bm WHERE bmbm = '%s'", args)
+        self.cursor.execute("DELETE FROM bm_bm WHERE bmbm = %s", args)
         self.db.commit()
 
     # 修改管理员密码
     def update_admin_password(self, password):
         args = (password, )
-        self.cursor.execute("UPDATE admin_table SET password = '%s' WHERE user = 'admin'", args)
+        self.cursor.execute("UPDATE admin_table SET password = %s WHERE user = 'admin'", args)
         self.db.commit()
 
     # 数据库备份
@@ -316,17 +319,17 @@ class SQLClient(object):
     def add_person_relationship(self, user_id, xm1, brgx1, hzgz1, xm2, brgx2, hzgz2):
         if xm1:
             args = (user_id, brgx1, xm1, hzgz1)
-            self.cursor.execute("INSERT INTO cygx(zgbm, Brgx, xm, job) VALUES ('%s', '%s', '%s', '%s')", args)
+            self.cursor.execute("INSERT INTO cygx(zgbm, Brgx, xm, job) VALUES (%s, %s, %s, %s)", args)
             self.db.commit()
         if xm2:
             args = (user_id, brgx2, xm2, hzgz2)
-            self.cursor.execute("INSERT INTO cygx(zgbm, Brgx, xm, job) VALUES ('%s', '%s', '%s', '%s')", args)
+            self.cursor.execute("INSERT INTO cygx(zgbm, Brgx, xm, job) VALUES (%s, %s, %s, %s)", args)
             self.db.commit()
 
     # 显示社会关系信息
     def get_person_relationship(self, user_id):
         args = (user_id, )
-        test_count = self.cursor.execute("SELECT * FROM cygx WHERE zgbm = '%s'", args)
+        test_count = self.cursor.execute("SELECT * FROM cygx WHERE zgbm = %s", args)
         if test_count == 0:
             return ()
         data = self.cursor.fetchall()
